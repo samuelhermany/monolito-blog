@@ -1,0 +1,98 @@
+###########################
+# IDEs
+###########################
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# VSCode
+.vscode/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.target/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+###########################
+# Sistema Operacional
+###########################
+.DS_Store
+Thumbs.db
+
+###########################
+# Java / Maven / Gradle
+###########################
+*.class
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Logs
+*.log
+
+###########################
+# Spring Boot
+###########################
+# Arquivos criados em tempo de execução
+*.h2.db
+*.mv.db
+*.trace.db
+*.pid
+
+# Configurações sensíveis
+application-*.yml
+application-*.properties
+
+###########################
+# React + Vite + TypeScript
+###########################
+node_modules/
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Cache
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+###########################
+# Testes e Cobertura
+###########################
+coverage/
+test-output/
+*.lcov
+
+###########################
+# Outros
+###########################
+.env
+.env.local
+.env.*.local
