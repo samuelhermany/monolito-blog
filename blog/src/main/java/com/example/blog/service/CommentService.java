@@ -25,8 +25,8 @@ public class CommentService {
     }
 
     public List<Comment> listByPostSlug(String postSlug){
-        Post post = postRepo.findBySlug(postSlug).orElseThrow(() -> new NotFoundException("Post não encontrado"));
-        // Lazy-safe dentro da transação
+        Post post = postRepo.findBySlug(postSlug).orElseThrow(() -> new NotFoundException("Post nao encontrado"));
+        // Lazy-safe dentro da transacao
         return post.getComments();
     }
 
@@ -35,7 +35,7 @@ public class CommentService {
                              @NotBlank String authorName,
                              @Email String authorEmail,
                              @NotBlank String content){
-        Post p = postRepo.findBySlug(postSlug).orElseThrow(() -> new NotFoundException("Post não encontrado"));
+        Post p = postRepo.findBySlug(postSlug).orElseThrow(() -> new NotFoundException("Post nao encontrado"));
         Comment c = new Comment();
         c.setPost(p);
         c.setAuthorName(authorName);
@@ -47,7 +47,7 @@ public class CommentService {
 
     @Transactional
     public void delete(Long commentId){
-        Comment c = commentRepo.findById(commentId).orElseThrow(() -> new NotFoundException("Comentário não encontrado"));
+        Comment c = commentRepo.findById(commentId).orElseThrow(() -> new NotFoundException("Comentario nao encontrado"));
         commentRepo.delete(c);
     }
 }

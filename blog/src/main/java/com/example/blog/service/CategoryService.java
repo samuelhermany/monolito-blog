@@ -25,19 +25,19 @@ public class CategoryService {
 
     @Transactional(readOnly = true)
     public Category findById(Long id){
-        return categoryRepo.findById(id).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        return categoryRepo.findById(id).orElseThrow(() -> new NotFoundException("Categoria nao encontrada"));
     }
 
 
     @Transactional(readOnly = true)
     public Category findBySlug(String slug){
-        return categoryRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        return categoryRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Categoria nao encontrada"));
     }
 
 
     @Transactional
     public Category create(Category category){
-        // Se slug não vier, gerar a partir do nome
+        // Se slug nao vier, gerar a partir do nome
         if (category.getSlug() == null || category.getSlug().isBlank()) {
             category.setSlug(slugify(category.getName()));
         } else {
@@ -45,11 +45,11 @@ public class CategoryService {
         }
 
         // Verifica unicidade do slug
-        categoryRepo.findBySlug(category.getSlug()).ifPresent(c -> { throw new BusinessException("Slug de categoria já em uso"); });
+        categoryRepo.findBySlug(category.getSlug()).ifPresent(c -> { throw new BusinessException("Slug de categoria ja em uso"); });
         try {
             return categoryRepo.save(category);
         } catch (DataIntegrityViolationException e){
-            throw new BusinessException("Não foi possível salvar a categoria (conflito de chave única ou dados inválidos)");
+            throw new BusinessException("Nao foi possivel salvar a categoria (conflito de chave única ou dados invalidos)");
         }
     }
 
@@ -62,10 +62,10 @@ public class CategoryService {
         if (newSlug == null || newSlug.isBlank()) newSlug = slugify(category.getName());
         newSlug = slugify(newSlug);
 
-        // Garante que o slug não colida com outra categoria
+        // Garante que o slug nao colida com outra categoria
         categoryRepo.findBySlug(newSlug).ifPresent(existing -> {
             if (!existing.getId().equals(c.getId())) {
-                throw new BusinessException("Slug de categoria já em uso");
+                throw new BusinessException("Slug de categoria ja em uso");
             }
         });
 
@@ -73,7 +73,7 @@ public class CategoryService {
         try {
             return categoryRepo.save(c);
         } catch (DataIntegrityViolationException e){
-            throw new BusinessException("Não foi possível atualizar a categoria");
+            throw new BusinessException("Nao foi possível atualizar a categoria");
         }
     }
 

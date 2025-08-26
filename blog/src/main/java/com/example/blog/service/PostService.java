@@ -42,15 +42,15 @@ public class PostService {
     }
 
     public PostResponse getBySlug(String slug){
-        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post não encontrado"));
+        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post nao encontrado"));
         return toResponse(p);
     }
 
 
     @Transactional
     public PostResponse create(PostCreateRequest req){
-        Author a = authorRepo.findById(req.authorId()).orElseThrow(() -> new NotFoundException("Autor não encontrado"));
-        Category c = categoryRepo.findById(req.categoryId()).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        Author a = authorRepo.findById(req.authorId()).orElseThrow(() -> new NotFoundException("Autor nao encontrado"));
+        Category c = categoryRepo.findById(req.categoryId()).orElseThrow(() -> new NotFoundException("Categoria nao encontrada"));
         String slug = ensureUniqueSlug(slugify(req.title()));
 
 
@@ -69,11 +69,11 @@ public class PostService {
 
     @Transactional
     public PostResponse update(String slug, PostUpdateRequest req){
-        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post não encontrado"));
+        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post nao encontrado"));
         p.setTitle(req.title());
         p.setContent(req.content());
         p.setStatus(Optional.ofNullable(req.status()).orElse(PostStatus.DRAFT));
-        Category c = categoryRepo.findById(req.categoryId()).orElseThrow(() -> new NotFoundException("Categoria não encontrada"));
+        Category c = categoryRepo.findById(req.categoryId()).orElseThrow(() -> new NotFoundException("Categoria nao encontrada"));
         p.setCategory(c);
         return toResponse(p);
     }
@@ -81,7 +81,7 @@ public class PostService {
 
     @Transactional
     public void delete(String slug){
-        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post não encontrado"));
+        Post p = postRepo.findBySlug(slug).orElseThrow(() -> new NotFoundException("Post nao encontrado"));
         postRepo.delete(p);
     }
 

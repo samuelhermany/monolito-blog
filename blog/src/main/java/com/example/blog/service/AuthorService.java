@@ -24,7 +24,7 @@ public class AuthorService {
 
     @Transactional(readOnly = true)
     public Author findById(Long id) {
-        return authorRepo.findById(id).orElseThrow(() -> new NotFoundException("Autor não encontrado"));
+        return authorRepo.findById(id).orElseThrow(() -> new NotFoundException("Autor nao encontrado"));
     }
 
     @Transactional
@@ -32,7 +32,7 @@ public class AuthorService {
         try {
             return authorRepo.save(author);
         } catch (DataIntegrityViolationException e){
-            throw new BusinessException("Não foi possível salvar o autor (email já utilizado ou dados inválidos)");
+            throw new BusinessException("Nao foi possivel salvar o autor (email ja utilizado ou dados invalidos)");
         }
     }
 
@@ -45,7 +45,7 @@ public class AuthorService {
         try {
             return authorRepo.save(a);
         } catch (DataIntegrityViolationException e){
-            throw new BusinessException("Não foi possível atualizar o autor (email duplicado ou dados inválidos)");
+            throw new BusinessException("Nao foi possivel atualizar o autor (email duplicado ou dados invalidos)");
         }
     }
 

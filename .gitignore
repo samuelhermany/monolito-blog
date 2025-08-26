@@ -57,7 +57,7 @@ build/
 ###########################
 # Spring Boot
 ###########################
-# Arquivos criados em tempo de execução
+# Arquivos criados em tempo de execucao
 *.h2.db
 *.mv.db
 *.trace.db
